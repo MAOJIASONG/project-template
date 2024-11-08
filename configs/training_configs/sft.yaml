@@ -1,0 +1,50 @@
+# Model arguments
+model_name_or_path: Qwen/Qwen2.5-1.5B
+model_revision: main
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+
+# Data training arguments
+chat_template: "dataset/chat_templates.json"
+dataset_mixer:
+  HuggingFaceH4/ultrachat_200k: 1.0
+dataset_splits:
+  - train_sft
+  - test_sft
+preprocessing_num_workers: 20
+dataset_num_proc: 20
+truncation_side: left
+auto_insert_empty_system_msg: false  # false for qwen
+
+# SFT trainer config
+output_dir: qwen-25-1.5b-base-sft
+run_name: qwen-25-1.5b-base-sft
+per_device_train_batch_size: 8
+per_device_eval_batch_size: 8
+gradient_accumulation_steps: 4
+eval_strategy: steps
+eval_steps: 30
+report_to:
+  - wandb
+auto_find_batch_size: true
+bf16: true
+do_eval: true
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: False
+learning_rate: 2.0e-05
+log_level: info
+logging_steps: 5
+logging_strategy: steps
+lr_scheduler_type: cosine
+max_seq_length: 2048
+max_steps: -1
+num_train_epochs: 1
+optim: paged_adamw_8bit  # adamw_torch_fused
+overwrite_output_dir: true
+remove_unused_columns: true
+save_strategy: "step"
+save_steps: 100
+save_total_limit: 5
+seed: 42
+warmup_ratio: 0.1

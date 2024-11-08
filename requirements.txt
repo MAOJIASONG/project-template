@@ -1,0 +1,23 @@
+# training requirements
+vllm
+xformers
+transformers
+torch
+accelerate
+deepspeed
+peft
+flash-attn
+# llm
+openai
+anthropic
+# auxilary libary
+trl
+sentence-transformers
+sentencepiece
+scikit-learn
+datasets
+evaluate
+notebook
+matplotlib
+pandas
+wandb

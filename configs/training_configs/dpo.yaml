@@ -1,0 +1,53 @@
+# Model arguments
+model_name_or_path: qwen-25-1.5b-base-sft/
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+
+# Data training arguments
+chat_template: "dataset/chat_templates.json"
+dataset_mixer:
+  HuggingFaceH4/ultrafeedback_binarized: 1.0
+dataset_splits:
+  - train
+  - test
+preprocessing_num_workers: 15
+dataset_num_proc: 15
+truncation_side: left
+auto_insert_empty_system_msg: false  # false for qwen
+
+# DhPOTrainer arguments
+output_dir: qwen-25-1.5b-base-dhpo-test
+run_name: qwen-25-1.5b-base-dhpo
+margin: 0.0
+alpha: 1.0
+beta: 1.0
+reg_weight: 0.5
+desirable_weight: 1.0
+undesirable_weight: 1.0
+per_device_train_batch_size: 8
+per_device_eval_batch_size: 6
+gradient_accumulation_steps: 1
+eval_strategy: steps
+eval_steps: 5
+report_to:
+  - none
+auto_find_batch_size: true
+bf16: true
+do_eval: true
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: False
+learning_rate: 5.0e-7
+log_level: info
+logging_steps: 1
+lr_scheduler_type: cosine
+max_length: 2048
+max_prompt_length: 1800
+num_train_epochs: 1
+optim: paged_adamw_8bit  # adamw_torch_fused
+overwrite_output_dir: true
+save_strategy: "steps"
+save_steps: 100
+save_total_limit: 10
+seed: 42
+warmup_ratio: 0.1
