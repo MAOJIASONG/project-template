@@ -21,3 +21,5 @@ notebook
 matplotlib
 pandas
 wandb
+gradio
+colorlog
