@@ -4,6 +4,7 @@ import sys
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, NewType, Optional, Tuple, Literal
 from transformers import HfArgumentParser, TrainingArguments
+from omegaconf import MISSING
 
 DataClassType = NewType("DataClassType", Any)
 
@@ -81,8 +82,19 @@ class H4ArgumentParser(HfArgumentParser):
         if len(output) == 1:
             output = output[0]
         return output
-    
-    
+
+
+@dataclass
+class HydraConfig:
+    # this is unfortunately verbose due to @dataclass limitations
+    defaults: List[Any] = field(default_factory=lambda: defaults)
+
+defaults = [
+    {"training_configs" : "base_sft_config.yaml"},
+    {"eval_configs": "eval.yaml"},
+    {"hydra": "defaults"}
+]
+
     
 @dataclass
 class ModelArguments:
@@ -221,7 +233,7 @@ class TrainingConfig(TrainingArguments):
             The number of workers to use to tokenize the data. Defaults to None.
     """
     
-    max_length: Optional[int] = None
+    max_seq_length: Optional[int] = None
 
     label_pad_token_id: int = -100
     padding_value: int = None

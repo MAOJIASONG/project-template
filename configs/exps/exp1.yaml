@@ -1,0 +1,6 @@
+# @package _global_
+defaults:
+  - /training_configs/base_sft_config
+
+training_configs:
+  chat_template: "w"
