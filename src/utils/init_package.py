@@ -29,6 +29,6 @@ def setup_hydra_config():
     )
 
     cs = ConfigStore.instance()
-    cs.store(name="hydra_config", node=HydraConfig)
+    cs.store(name="config", node=HydraConfig)
     # print(cs.repo)
     

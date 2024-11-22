@@ -1,0 +1,27 @@
+# @package _global_
+defaults:
+  - /training_configs/base_sft_config
+
+exp_name: training_sft_qwen2.5_base
+
+training_configs:
+# Model arguments
+  model_name_or_path: Qwen/Qwen2.5-1.5B
+
+# Data training arguments
+  chat_template: "src/data/chat_templates.json"
+
+# SFT trainer config
+  output_dir: qwen-25-1.5b-base-sft
+  run_name: qwen-25-1.5b-base-sft
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 8
+  gradient_accumulation_steps: 4
+  eval_strategy: steps
+  eval_steps: 30
+  report_to:
+    - wandb
+  save_strategy: "steps"
+  save_steps: 100
+  save_total_limit: 5
+

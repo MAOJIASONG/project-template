@@ -1,3 +1,0 @@
-# config.yaml
-run:
-    dir: ./my_outputs/${now:%Y-%m-%d_%H-%M-%S}  # 自定义输出目录
