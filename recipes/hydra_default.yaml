@@ -1,10 +1,8 @@
 defaults:
-  - training_configs : base_sft_config
-  - eval_configs : eval
   - _self_
 
 # customized params
-exp_name: trial1
+exp_name: default_exp
 
 
 # config for hydra

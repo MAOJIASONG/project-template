@@ -7,14 +7,14 @@ import hydra
 from src.train.arguments import DataArguments, ModelArguments, TrainingConfig
 from omegaconf import DictConfig
 
-@hydra.main(version_base=None, config_path="../../configs", config_name="hydra_default")
+@hydra.main(version_base=None, config_path="../../recipes", config_name="hydra_default")
 def my_app(cfg: DictConfig) -> None:
     print(OmegaConf.to_yaml(cfg))
-    parser = HfArgumentParser((DataArguments, ModelArguments, TrainingConfig))
-    data_args, model_args, training_args = parser.parse_dict(cfg.training_configs)
-    print(data_args)
-    print(model_args)
-    print(training_args)
+    # parser = HfArgumentParser((DataArguments, ModelArguments, TrainingConfig))
+    # data_args, model_args, training_args = parser.parse_dict(cfg)
+    # print(data_args)
+    # print(model_args)
+    # print(training_args)
     # with open("test.yaml", "w") as f:
     #     f.write(OmegaConf.to_yaml(cfg))
 

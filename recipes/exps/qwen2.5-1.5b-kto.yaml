@@ -1,6 +1,12 @@
+# @package _global_
+exp_name: training_kto_qwen2.5_base
+
+
 # Model arguments
 model_name_or_path: ???
+model_revision: main
 torch_dtype: bfloat16
+trust_remote_code: True
 attn_implementation: flash_attention_2
 
 # Data training arguments
@@ -18,6 +24,7 @@ auto_insert_empty_system_msg: false  # false for qwen
 # DhPOTrainer arguments
 output_dir: ???
 run_name: ???
+beta: 0.5
 per_device_train_batch_size: ???
 per_device_eval_batch_size: ???
 gradient_accumulation_steps: ???

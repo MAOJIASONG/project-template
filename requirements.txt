@@ -6,6 +6,7 @@ torch
 accelerate
 deepspeed
 peft
+bitsandbytes
 flash-attn
 # llm
 openai
@@ -24,3 +25,6 @@ wandb
 gradio
 colorlog
 hydra-core
+einops
+tensorboard
+unsloth
